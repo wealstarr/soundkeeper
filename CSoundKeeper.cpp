@@ -559,7 +559,7 @@ HRESULT CSoundKeeper::Run()
 
 	// Set defaults.
 	this->SetDeviceType(KeepDeviceType::Primary);
-	this->SetStreamTypeDefaults(KeepStreamType::Fluctuate);
+	this->SetStreamTypeDefaults(KeepStreamType::OpenOnly);
 
 	// Parse file name for defaults.
 	char fn_buffer[MAX_PATH];
@@ -841,3 +841,4 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 }
 
 #endif
+
