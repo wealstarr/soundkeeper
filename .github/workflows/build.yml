@@ -2,27 +2,26 @@ name: Build Windows 64-bit
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
+  workflow_dispatch: 
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Latest Checkout
 
       - name: Set up MSBuild
-        uses: microsoft/setup-msbuild@v1.1
+        uses: microsoft/setup-msbuild@v2  # Latest MSBuild Setup
 
-      - name: Build Solution (x64 Release)
+      - name: Build Solution
         run: msbuild SoundKeeper.sln /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4  # Latest Upload
         with:
           name: SoundKeeper-x64-Release
-          path: Release/
+          path: x64/Release/
