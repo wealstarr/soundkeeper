@@ -25,4 +25,4 @@ jobs:
         with:
           name: SoundKeeper-Win64-Release
           # If this fails, try path: x64/Release/
-          path: Release/
+        path: x64/Release/SoundKeeper.exe # Targeting the file directly is safer
