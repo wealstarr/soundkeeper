@@ -5,36 +5,24 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up MSBuild
-        uses: microsoft/setup-msbuild@v2
+      - uses: microsoft/setup-msbuild@v2
 
-      - name: Build Solution (Win64 Release)
-        run: msbuild SoundKeeper.sln /p:Configuration=Release /p:Platform="Win64" /p:PlatformToolset=v143
+      - name: Build
+        run: msbuild SoundKeeper.sln /p:Configuration=Release /p:Platform=Win64
 
-      - name: Locate and Upload
-        shell: pwsh
-        run: |
-          # Find the exe and store the directory path
-          $exePath = Get-ChildItem -Path . -Filter *.exe -Recurse | Select-Object -First 1 -ExpandProperty DirectoryName          if ($exePath) {
-              Write-Host "Found binary at: $exePath"
-              # Set an environment variable for the next step
-              echo "BIN_PATH=$exePath" >> $env:GITHUB_ENV
-          } else {
-              Write-Error "Could not find SoundKeeper.exe"
-              exit 1
-          }
-
-      - name: Upload artifacts
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SoundKeeper-Win64-Release
-          path: ${{ env.BIN_PATH }}\*
+          name: SoundKeeper-Win64
+          path: |
+            **/Release/**/*.exe
+            **/Win64/Release/**/*.exe
