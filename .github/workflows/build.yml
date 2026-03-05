@@ -12,16 +12,17 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4  # Latest Checkout
+        uses: actions/checkout@v4
 
       - name: Set up MSBuild
-        uses: microsoft/setup-msbuild@v2  # Latest MSBuild Setup
+        uses: microsoft/setup-msbuild@v2
 
-- name: Build Solution (Win64 Release)
+      - name: Build Solution (Win64 Release)
         run: msbuild SoundKeeper.sln /p:Configuration=Release /p:Platform="Win64" /p:PlatformToolset=v143
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: SoundKeeper-Win64-Release
-          path: Win64/Release/
+          # If this fails, try path: x64/Release/
+          path: Release/
