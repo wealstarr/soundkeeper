@@ -24,8 +24,7 @@ jobs:
         shell: pwsh
         run: |
           # Find the exe and store the directory path
-          $exePath = Get-ChildItem -Path . -Filter SoundKeeper.exe -Recurse | Select-Object -First 1 -ExpandProperty DirectoryName
-          if ($exePath) {
+          $exePath = Get-ChildItem -Path . -Filter *.exe -Recurse | Select-Object -First 1 -ExpandProperty DirectoryName          if ($exePath) {
               Write-Host "Found binary at: $exePath"
               # Set an environment variable for the next step
               echo "BIN_PATH=$exePath" >> $env:GITHUB_ENV
