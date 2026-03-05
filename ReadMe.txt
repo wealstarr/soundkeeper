@@ -106,3 +106,6 @@ v1.0.1 [2017/12/21]: Waking PC up after sleeping doesn't prevent Sound Keeper fr
 v1.0.0 [2014/12/24]: Initial release.
 
 (c) 2014-2025 Evgeny Vrublevsky <me@veg.by>
+
+Build 1
+
