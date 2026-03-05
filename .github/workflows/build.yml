@@ -38,4 +38,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: SoundKeeper-Win64-Release
-          path: ${{ env:BIN_PATH }}\*
+          path: ${{ env.BIN_PATH }}\*
