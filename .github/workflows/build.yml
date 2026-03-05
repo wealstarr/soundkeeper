@@ -17,11 +17,11 @@ jobs:
       - name: Set up MSBuild
         uses: microsoft/setup-msbuild@v2  # Latest MSBuild Setup
 
-      - name: Build Solution
-        run: msbuild SoundKeeper.sln /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
+- name: Build Solution (Win64 Release)
+        run: msbuild SoundKeeper.sln /p:Configuration=Release /p:Platform="Win64" /p:PlatformToolset=v143
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4  # Latest Upload
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
         with:
-          name: SoundKeeper-x64-Release
-          path: x64/Release/
+          name: SoundKeeper-Win64-Release
+          path: Win64/Release/
